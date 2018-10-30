@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="mb-5 mt-5 d-flex col">
+    <h3 class="d-inline"> Student Details</h3>
+    <button class="ml-auto btn btn-primary" (click)="addStudent()"> Add Student</button>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>RollNo</th>
+        <th>Name</th>
+        <th>Degree</th>
+        <th>City</th>
+        <th class="edit-col">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>{{student.rollno}}</td>
+        <td>{{student.name}}</td>
+        <td>{{student.degree}}</td>
+        <td>{{student.city}}</td>
+        <td class="text-center"><button class="btn-sm btn btn-outline-success btn-block" (click)="editStudent(student)">
+            Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

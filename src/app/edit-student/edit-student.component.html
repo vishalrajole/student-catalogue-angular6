@@ -1,0 +1,76 @@
+<!-- <div class="row">
+  <div class="mb-5 mt-5 d-flex col-sm-12">
+    <h3>Edit Student</h3>
+  </div>
+  <div class="col-sm-6">
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="rollno">Roll No:</label>
+        <input type="text" formControlName="rollno" placeholder="e.g. 7610" name="rollno" class="form-control" id="rollno">
+      </div>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input formControlName="name" placeholder="e.g. Vishal Rajole" name="name" class="form-control" id="name">
+      </div>
+
+      <div class="form-group">
+        <label for="degree">Degree:</label>
+        <input formControlName="degree" placeholder="e.g. BE IT" name="degree" class="form-control" id="degree">
+      </div>
+
+      <div class="form-group">
+        <label for="city">City:</label>
+        <input formControlName="city" placeholder="e.g. Pune" name="city" class="form-control" id="city">
+      </div>
+      <button class="btn btn-primary">Update</button>
+    </form>
+  </div>
+</div> -->
+<div class="row">
+  <div class="mb-5 mt-5 d-flex col-sm-12">
+    <h3>Edit Student</h3>
+  </div>
+  <div class="col-sm-6">
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="rollno">Roll No:</label>
+        <input type="text" formControlName="rollno" placeholder="e.g. 7610" name="rollno" class="form-control" id="rollno"
+          [ngClass]="{ 'is-invalid': submitted && formControls.rollno.errors }">
+        <div *ngIf="submitted && formControls.rollno.errors" class="invalid-feedback">
+          <div *ngIf="formControls.rollno.errors.required">Roll no required</div>
+          <div *ngIf="formControls.rollno.errors.minlength">Roll no length should be 4</div>
+          <div *ngIf="formControls.rollno.errors.maxlength">Roll no length should be 4</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input formControlName="name" placeholder="e.g. Vishal Rajole" name="name" class="form-control" id="name"
+          [ngClass]="{ 'is-invalid': submitted && formControls.name.errors }">
+        <div *ngIf="submitted && formControls.name.errors" class="invalid-feedback">
+          <div *ngIf="formControls.name.errors.required">Name is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="degree">Degree:</label>
+        <input formControlName="degree" placeholder="e.g. BE IT" name="degree" class="form-control" id="degree"
+          [ngClass]="{ 'is-invalid': submitted && formControls.degree.errors }">
+        <div *ngIf="submitted && formControls.degree.errors" class="invalid-feedback">
+          <div *ngIf="formControls.degree.errors.required">Degree is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="city">City:</label>
+        <input formControlName="city" placeholder="e.g. Pune" name="city" class="form-control" id="city" [ngClass]="{ 'is-invalid': submitted && formControls.city.errors }">
+        <div *ngIf="submitted && formControls.city.errors" class="invalid-feedback">
+          <div *ngIf="formControls.city.errors.required">City is required</div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary">Update</button>
+    </form>
+  </div>
+</div>
