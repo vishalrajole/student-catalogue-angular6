@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { first } from "rxjs/operators";
-const _ = require("lodash");
+import * as _ from 'lodash';
 import { Student } from "../model/student.model";
 import { StudentService } from "../services/student/student.service";
 
