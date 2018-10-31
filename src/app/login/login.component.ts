@@ -11,7 +11,7 @@ import { LoginService } from "../services/login/login.service";
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted: boolean = false;
-  invalidLogin: boolean = false;
+  isError: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router) { }
 
@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['list-student']);
       },
         err => {
+          this.isError = true;
           console.log("inside login component error: ", err)
         });
   }

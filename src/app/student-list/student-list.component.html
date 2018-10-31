@@ -1,7 +1,11 @@
 <div class="row">
-  <div class="mb-5 mt-5 d-flex col">
-    <h3 class="d-inline"> Student Details</h3>
-    <button class="ml-auto btn btn-primary" (click)="addStudent()"> Add Student</button>
+  <h3 class="mb-5 mt-5"> Student Details</h3>
+  <div class="mb-3 col-sm-12">
+    <div class="row">
+      <input type="text" class="form-control col-sm-6" #searchbox placeholder="Search Student By Name e.g. Vishal"
+        (keyup)="search(searchbox.value)">
+      <button class="ml-auto btn btn-primary" (click)="addStudent()"> Add Student</button>
+    </div>
   </div>
   <table class="table">
     <thead>
@@ -13,7 +17,7 @@
         <th class="edit-col">&nbsp;</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="!noSearchResultFound">
       <tr *ngFor="let student of students">
         <td>{{student.rollno}}</td>
         <td>{{student.name}}</td>
@@ -23,5 +27,7 @@
             Edit</button></td>
       </tr>
     </tbody>
+    <div *ngIf="noSearchResultFound">No search result found</div>
+    <button class="btn btn-link " (click)="showMore()">Show More ...</button>
   </table>
 </div>

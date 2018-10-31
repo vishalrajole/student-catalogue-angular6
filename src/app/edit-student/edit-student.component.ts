@@ -35,9 +35,9 @@ export class EditStudentComponent implements OnInit {
       city: ['', Validators.required]
     });
 
-    this.studentService.getStudentByRollNo(+rollno)
+    this.studentService.getStudentByRollNo(rollno.toString())
       .subscribe(data => {
-        let temp = _.pick(data.student, ["rollno", "name", "degree", "city"])
+        let temp = _.pick(data.students, ["rollno", "name", "degree", "city"]); //data.students
         this.editForm.setValue(temp);
       });
   }

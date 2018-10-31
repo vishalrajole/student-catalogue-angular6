@@ -20,8 +20,8 @@
             </div>
           </div>
           <button class="btn btn-primary btn-lg btn-block">Login</button>
-          <div *ngIf="invalidLogin" class="error">
-            <div>Invalid credentials.</div>
+          <div *ngIf="isError" class="text-danger">
+            <div>Login failed.</div>
           </div>
         </form>
       </div>
