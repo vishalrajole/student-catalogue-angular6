@@ -37,7 +37,7 @@ export class EditStudentComponent implements OnInit {
 
     this.studentService.getStudentByRollNo(rollno.toString())
       .subscribe(data => {
-        let temp = _.pick(data.students, ["rollno", "name", "degree", "city"]); //data.students
+        let temp = _.pick(data.student, ["rollno", "name", "degree", "city"]); //data.students
         this.editForm.setValue(temp);
       });
   }
