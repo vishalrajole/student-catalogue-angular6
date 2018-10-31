@@ -12,7 +12,7 @@ app.use(cors()); //TODO NOT a good way to open for all. Should have whitelisted 
 
 app.post("/login", (req, res) => {
     var body = _.pick(req.body, ["username", "password"]);
-    if (body.username === 'test' && body.password === 'password') {
+    if (body.username === 'test' && body.password === 'password') { //mocked for time being. Should be in db with some kind of token based auth
         res.status(200).send();
     } else {
         res.status(404).send("Not found");

@@ -9,3 +9,4 @@ Clerk can filter students by name, added provision for simple Pagination.
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
 Run `node server/server.js`  to start server
 Run mongod to ensure database is up and running
+use username=test and password=password to login
