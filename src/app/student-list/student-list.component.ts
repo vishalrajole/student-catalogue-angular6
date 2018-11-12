@@ -30,6 +30,8 @@ export class StudentListComponent implements OnInit {
         } else {
           this.emptyStudents = true;
         }
+      }, error => {
+        alert(`Oops, something went wrong.`)
       });
   }
 
@@ -52,6 +54,8 @@ export class StudentListComponent implements OnInit {
         } else {
           this.noSearchResultFound = true;
         }
+      }, error => {
+        alert(`Oops, something went wrong.`)
       });
     } else {
       this.fetchStudents();
@@ -68,6 +72,8 @@ export class StudentListComponent implements OnInit {
         } else {
           this.noMoreRecords = true;
         }
+      }, error => {
+        alert(`Oops, something went wrong.`)
       });
   }
 }

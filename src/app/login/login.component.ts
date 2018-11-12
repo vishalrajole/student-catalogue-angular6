@@ -35,11 +35,10 @@ export class LoginComponent implements OnInit {
       .subscribe(data => {
         console.log("inside get students: ", data)
         this.router.navigate(['list-student']);
-      },
-        err => {
-          this.isError = true;
-          console.log("inside login component error: ", err)
-        });
+      }, err => {
+        this.isError = true;
+        console.log("inside login component error: ", err)
+      });
   }
 
 }

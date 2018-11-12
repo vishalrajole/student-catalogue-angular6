@@ -6,8 +6,6 @@ import * as _ from 'lodash';
 import { Student } from "../model/student.model";
 import { StudentService } from "../services/student/student.service";
 
-
-
 @Component({
   selector: 'app-edit-student',
   templateUrl: './edit-student.component.html',
@@ -39,6 +37,8 @@ export class EditStudentComponent implements OnInit {
       .subscribe(result => {
         let temp = _.pick(result, ["rollno", "name", "degree", "city"]); //data.students
         this.editForm.setValue(temp);
+      }, error => {
+        alert(`Oops, something went wrong.`)
       });
   }
   get formControls() { return this.editForm.controls; }
@@ -56,7 +56,7 @@ export class EditStudentComponent implements OnInit {
           this.router.navigate(['list-student']);
         },
         error => {
-          alert(error);
+          alert(`Oops, something went wrong.`)
         });
   }
 

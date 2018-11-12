@@ -32,6 +32,8 @@ export class AddStudentComponent implements OnInit {
       .subscribe(data => {
         console.log('user added:', data);
         this.router.navigate(['list-student']);
+      }, error => {
+        alert(`Oops, something went wrong.`)
       });
   }
 
