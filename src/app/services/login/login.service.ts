@@ -15,11 +15,16 @@ export class LoginService {
   login(username: string, password: string) {
     return this.http.post<any>(this.baseUrl, { username: username, password: password })
       .pipe(map(user => {
-        if (user) {
+        if (user && user.token) {
+          localStorage.setItem('loggedUser', JSON.stringify(user));
           console.log(`login success: ${user}`);
         }
-
         return user;
       }));
+  }
+
+  logout() {
+    console.log('user is logged out');
+    localStorage.removeItem('loggedUser');
   }
 }
