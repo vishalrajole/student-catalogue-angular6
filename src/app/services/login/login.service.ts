@@ -22,9 +22,4 @@ export class LoginService {
         return user;
       }));
   }
-
-  logout() {
-    console.log('user is logged out');
-    localStorage.removeItem('loggedUser');
-  }
 }

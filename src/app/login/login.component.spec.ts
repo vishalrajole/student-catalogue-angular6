@@ -2,8 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 import { LoginComponent } from './login.component';
+import { LoginService } from '../services/login/login.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -15,7 +18,6 @@ describe('LoginComponent', () => {
       declarations: [LoginComponent],
       imports: [ReactiveFormsModule, HttpClientTestingModule, RouterTestingModule],
       providers: [
-        // reference the new instance of formBuilder from above
         { provide: FormBuilder, useValue: formBuilder }
       ]
     })
@@ -35,9 +37,17 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  // TODO test suite for login method
-  it('should call login method', async () => {
 
+  it('should call login method from loginService', async () => {
+    let loginElement: DebugElement;
+    const debugElement = fixture.debugElement;
+    let loginService = debugElement.injector.get(LoginService);
+    let loginSpy = spyOn(loginService, 'login').and.callThrough();
+    loginElement = fixture.debugElement.query(By.css('form'));
+    component.loginForm.controls['username'].setValue('test');
+    component.loginForm.controls['password'].setValue('password');
+    loginElement.triggerEventHandler('ngSubmit', null);
+    expect(loginSpy).toHaveBeenCalledTimes(1);
   })
 
   it('should mark login form as invalid', async () => {
