@@ -25,9 +25,9 @@ import { EditStudentComponent } from './edit-student/edit-student.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [LoginService, StudentService, RouteValidatorService, {
     provide: ErrorService,
