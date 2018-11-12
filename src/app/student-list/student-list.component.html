@@ -28,6 +28,6 @@
       </tr>
     </tbody>
     <div *ngIf="noSearchResultFound">No search result found</div>
-    <button class="btn btn-link " (click)="showMore()">Show More ...</button>
+    <button class="btn btn-link " (click)="showMore()" *ngIf="!noMoreRecords">Show More ...</button>
   </table>
 </div>

@@ -36,8 +36,8 @@ export class EditStudentComponent implements OnInit {
     });
 
     this.studentService.getStudentByRollNo(rollno.toString())
-      .subscribe(data => {
-        let temp = _.pick(data.student, ["rollno", "name", "degree", "city"]); //data.students
+      .subscribe(result => {
+        let temp = _.pick(result, ["rollno", "name", "degree", "city"]); //data.students
         this.editForm.setValue(temp);
       });
   }
@@ -49,7 +49,7 @@ export class EditStudentComponent implements OnInit {
       return;
     }
     this.studentService.editStudent(this.editForm.value)
-      .pipe(first())
+      //      .pipe(first())
       .subscribe(
         data => {
           console.log(`student saved: ${data}`);

@@ -13,6 +13,7 @@ import { Student } from '../model/student.model';
 export class StudentListComponent implements OnInit {
   students: Student[];
   noSearchResultFound: Boolean = false;
+  noMoreRecords: Boolean = false;
   constructor(private studentService: StudentService, private router: Router) { }
 
   ngOnInit() {
@@ -21,9 +22,9 @@ export class StudentListComponent implements OnInit {
 
   fetchStudents() {
     this.studentService.getStudents()
-      .subscribe(data => {
-        console.log('inside fetch: ', data);
-        this.students = data.students;
+      .subscribe(students => {
+        console.log('inside fetch: ', students);
+        this.students = students;
       });
   }
 
@@ -40,9 +41,9 @@ export class StudentListComponent implements OnInit {
   search(term: string) {
     this.noSearchResultFound = false;
     if (term) {
-      this.studentService.searchStudent(term).subscribe(data => {
-        if (data && data.students.length) {
-          this.students = data.students;
+      this.studentService.searchStudent(term).subscribe(result => {
+        if (result && result.length) {
+          this.students = result;
         } else {
           this.noSearchResultFound = true;
         }
@@ -54,9 +55,14 @@ export class StudentListComponent implements OnInit {
 
   showMore() {
     var skipCount = this.students.length;
-    this.studentService.getStudents(skipCount)
-      .subscribe(data => {
-        this.students.push(...data.students)
+    this.studentService.getStudentsByPagination(skipCount)
+      .subscribe(result => {
+        console.log(result);
+        if (result.length) {
+          this.students.push(...result)
+        } else {
+          this.noMoreRecords = true;
+        }
       });
   }
 }

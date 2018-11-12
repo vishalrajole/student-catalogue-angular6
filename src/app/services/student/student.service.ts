@@ -9,21 +9,20 @@ export class StudentService {
   baseUrl: string = 'http://localhost:8000/students';
   constructor(private http: HttpClient) { }
 
-  getStudents(skipCount) {
-    if (skipCount) {
-      return this.http.get<Student>(`${this.baseUrl}`, {
-        params: {
-          skipCount: skipCount
-        }
-      });
-    } else {
-      return this.http.get<Student>(this.baseUrl);
-    }
+  getStudents() {
+    return this.http.get<Student[]>(this.baseUrl);
+  }
 
+  getStudentsByPagination(skipCount) {
+    return this.http.get<Student[]>(`${this.baseUrl}`, {
+      params: {
+        skipCount: skipCount
+      }
+    });
   }
 
   getStudentByRollNo(rollno: string) {
-    return this.http.get<Student>(this.baseUrl + '/' + rollno);
+    return this.http.get(this.baseUrl + '/' + rollno);
   }
   addStudent(student: Student) {
     return this.http.post(this.baseUrl, student);
@@ -32,6 +31,6 @@ export class StudentService {
     return this.http.patch(this.baseUrl + '/' + student.rollno, student);
   }
   searchStudent(term: string) {
-    return this.http.get<Student>(`${this.baseUrl}/search/${term}`);
+    return this.http.get<Student[]>(`${this.baseUrl}/search/${term}`);
   }
 }

@@ -25,7 +25,7 @@ app.get("/students", (req, res) => {
     if (skipCount) {
         Student.find({
         }, { _id: 0 }).skip(parseInt(skipCount)).limit(5).then(students => {
-            res.send({ students });
+            res.send(students);
         }, error => {
             res.status(400).send(error);
         }
@@ -33,7 +33,7 @@ app.get("/students", (req, res) => {
     } else {
         Student.find({
         }, { _id: 0 }).limit(5).then(students => {
-            res.send({ students });
+            res.send(students);
         }, error => {
             res.status(400).send(error);
         }
@@ -50,7 +50,7 @@ app.get("/students/:rollno", (req, res) => {
         if (!student) {
             res.status(404).send();
         }
-        res.send({ student });
+        res.send(student);
     }).catch(error => {
         res.status(404).send("Not found");
     });
@@ -65,7 +65,7 @@ app.get("/students/search/:term", (req, res) => {
         if (!students) {
             res.status(404).send();
         }
-        res.send({ students });
+        res.send(students);
     }).catch(error => {
         res.status(404).send("Not found");
     });
@@ -99,7 +99,7 @@ app.patch("/students/:rollno", (req, res) => {
         if (!student) {
             return res.status(404).send("Not found");
         }
-        res.send({ student });
+        res.send(student);
     }, error => {
         res.status(400).send(error);
     }
