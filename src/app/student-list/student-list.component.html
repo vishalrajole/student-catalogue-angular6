@@ -27,7 +27,9 @@
             Edit</button></td>
       </tr>
     </tbody>
+    <div *ngIf="emptyStudents">No student records found</div>
     <div *ngIf="noSearchResultFound">No search result found</div>
-    <button class="btn btn-link " (click)="showMore()" *ngIf="!noMoreRecords">Show More ...</button>
+    <button class="btn btn-link " (click)="showMore()" *ngIf="!noMoreRecords && !emptyStudents && !noSearchResultFound">Show
+      More ...</button>
   </table>
 </div>

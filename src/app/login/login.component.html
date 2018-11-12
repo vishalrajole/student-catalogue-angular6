@@ -19,7 +19,7 @@
               <div *ngIf="formControls.password.errors.required">Password is required</div>
             </div>
           </div>
-          <button class="btn btn-primary btn-lg btn-block">Login</button>
+          <button class="btn btn-primary btn-lg btn-block" [disabled]="!loginForm.valid">Login</button>
           <div *ngIf="isError" class="text-danger">
             <div>Login failed.</div>
           </div>

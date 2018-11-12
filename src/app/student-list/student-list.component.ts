@@ -14,6 +14,7 @@ export class StudentListComponent implements OnInit {
   students: Student[];
   noSearchResultFound: Boolean = false;
   noMoreRecords: Boolean = false;
+  emptyStudents: Boolean = false;
   constructor(private studentService: StudentService, private router: Router) { }
 
   ngOnInit() {
@@ -24,7 +25,11 @@ export class StudentListComponent implements OnInit {
     this.studentService.getStudents()
       .subscribe(students => {
         console.log('inside fetch: ', students);
-        this.students = students;
+        if (students.length) {
+          this.students = students;
+        } else {
+          this.emptyStudents = true;
+        }
       });
   }
 
@@ -38,7 +43,7 @@ export class StudentListComponent implements OnInit {
     this.router.navigate(['edit-student']);
   };
 
-  search(term: string) {
+  search(term: string) { //TODO debounce api calls using observables
     this.noSearchResultFound = false;
     if (term) {
       this.studentService.searchStudent(term).subscribe(result => {
