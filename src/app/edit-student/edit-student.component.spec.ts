@@ -37,4 +37,21 @@ describe('EditStudentComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should mark edit-student form as invalid', async () => {
+    localStorage.setItem("editRollNo", '1111');
+    component.editForm.controls['rollno'].setValue(localStorage.getItem('editRollNo'));
+    component.editForm.controls['name'].setValue('');
+    component.editForm.controls['degree'].setValue('');
+    component.editForm.controls['city'].setValue('');
+    expect(component.editForm.valid).toBeFalsy();
+  })
+
+  it('should mark edit-student form as valid', async () => {
+    component.editForm.controls['rollno'].setValue('2323');
+    component.editForm.controls['name'].setValue('Vishal');
+    component.editForm.controls['degree'].setValue('BE');
+    component.editForm.controls['city'].setValue('Pune');
+    expect(component.editForm.valid).toBeTruthy();
+  })
 });
